@@ -1,0 +1,55 @@
+{
+  "name": "klyz-toolkit-lite",
+  "version": "1.0.0",
+  "description": "KLYZ Toolkit Lite - 实用教辅软件工具集简易版",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "author": "ZhonX07",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^35.1.1",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "com.klyz.toolkit",
+    "productName": "KLYZ Toolkit",
+    "directories": {
+      "output": "build"
+    },
+    "files": [
+      "main.js",
+      "Web-Files/**/*",
+      "!**/node_modules/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "Web-Files/html/*.ttf",
+        "to": "app/Web-Files/html/"
+      }
+    ],
+    "win": {
+      "icon": "Web-Files/images/favicon.ico",
+      "target": [
+        "nsis",
+        "portable"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    },
+    "portable": {
+      "artifactName": "KLYZ-ToolkitLite-Portable.exe"
+    },
+    "electronDownload": {
+      "mirror": "https://cdn.npmmirror.com/binaries/electron/",
+      "cache": "C:\\Users\\klyz\\electron"
+    }
+  }
+}
