@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<!-- Dev:ZhonXu. 2024  KLYZ -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            background: url('class21zixi.png') no-repeat center center fixed;
+            background-size: cover;
+            user-select: none; /* 禁止选中文字 */
+        }
+        
+        #date,
+        #time,
+        #class,
+        #cuoti,
+        #quote,
+        #countdown,
+        #zhengli {
+            position: absolute;
+            font-size: 4.5vw;
+            font-family: "Arial";
+            font-weight: bold;
+            font-family: "cjdmh", "微软雅黑";
+        }
+
+        #date {
+            top: 6%;
+            left: 50%; 
+            transform: translateX(-50%); 
+            color: rgb(0, 130, 252);
+            text-align: center;
+            font-weight: bold;
+            font-size: 3.65vw;
+            font-family: 'Sans', '微软雅黑';
+        }
+
+        #time {
+            top: 13%; 
+            left: 50%; 
+            transform: translateX(-50%); 
+            color: rgb(0, 130, 252);
+            text-align: center;
+            font-weight: bold;
+            font-size: 3.65vw;
+            font-family: 'Sans', '微软雅黑';
+        }
+
+        #countdown {
+            top: 9.25vh;
+            right: 1vw;
+            color: rgb(111, 146, 252);
+            font-family: 'Sans', '微软雅黑';
+        }
+
+        #class {
+            top: 4.6vh;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: red;
+            font-weight: bold;
+            font-family: 'cjdmh', '微软雅黑';
+            font-size: 4.7vw;
+        }
+
+        #zhengli {
+            bottom: 2.3vh;
+            left: 50%; 
+            transform: translateX(-50%); 
+            color: rgb(22, 28, 46);
+            text-align: center;
+            font-weight: bold;
+            white-space:nowrap;
+            font-size: 2.85vw;
+            font-family: 'cjdmh', '微软雅黑';
+        }
+
+        #cuoti {
+            top: 7.4vh;
+            left: 1vw;
+            color: rgb(111, 146, 252);
+            font-family: 'cjdmh', '微软雅黑';
+            font-size: 4.5vw;
+        }
+
+        @font-face {
+            font-family: 'cjdmh';
+            src: url('cjdmh.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'whgsqzj';
+            src: url('whgsqzj.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Sans';
+            src: url('sans.ttf') format('truetype');
+        }
+
+        /* 返回按钮样式 */
+        #back-button {
+            position: fixed;
+            bottom: 7.4vh;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 130, 252, 0.8);
+            color: white;
+            border: none;
+            border-radius: 0.4vw;
+            padding: 0.9vh 1.3vw;
+            font-size: 1vw;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1000;
+            font-family: 'Sans', '微软雅黑';
+            box-shadow: 0 0.2vw 0.4vw rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+
+        #back-button:hover {
+            background: rgba(0, 130, 252, 1);
+            transform: translateX(-50%) translateY(-0.3vh);
+            box-shadow: 0 0.3vw 0.6vw rgba(0,0,0,0.4);
+        }
+    </style>
+</head>
+<body>
+    <div id="date"></div>
+    <div id="time"></div>
+    <div id="quote"></div>
+    <div id="countdown"></div>
+    <div id="cuoti"></div>
+    <div id="zhengli"></div>
+    
+    <!-- 添加返回按钮，位于底部居中 -->
+    <button id="back-button" onclick="window.location.href='../index.html'">返回主页</button>
+    
+    <script>
+        // 更新日期和时间
+        function updateDateTime() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const dayOfWeek = now.toLocaleDateString('zh-cn', { weekday: 'long' });
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+
+            const dateString = `${year}年${month}月${day}日 ${dayOfWeek}`;
+            const timeString = `${hours}:${minutes}:${seconds}`;
+
+            document.getElementById('date').textContent = dateString;
+            document.getElementById('time').textContent = timeString;
+        }
+
+        // 更新高考倒计时
+        function updateCountdown() {
+            const highSchoolExamDate = new Date('2026-06-06');
+            const now = new Date();
+            const difference = highSchoolExamDate - now;
+            const daysRemaining = Math.ceil(difference / (1000 * 60 * 60 * 24));
+
+            document.getElementById('countdown').textContent = `距离高考还有${daysRemaining}天`;
+        }
+
+        // 更新本学期开学天数
+        function cuotizhengli() {
+            const kaixuedate = new Date('2025-02-13');
+            const now = new Date();
+            const difference = now - kaixuedate;
+            const days = Math.ceil(difference / (1000 * 60 * 60 * 24));
+
+            document.getElementById('cuoti').textContent = `本学期已开学${days}天`;
+        }
+
+        // 更新需要整理的错题数量
+        function zhengli() {
+            const classtwfirstzhengli = new Date('2025-02-23');
+            const firstzhengli = new Date('2024-02-25');
+            const now = new Date();
+            const classtwdifference = now - classtwfirstzhengli;
+            const difference = now - firstzhengli;
+            const days = Math.ceil(difference / (1000 * 60 * 60 * 24));
+            const classtwdays = Math.ceil(classtwdifference / (1000 * 60 * 60 * 24));
+        }
+
+        // 初始调用函数
+        updateDateTime();
+        updateCountdown();
+        cuotizhengli();
+        zhengli();
+
+        // 每秒更新一次
+        setInterval(updateDateTime, 1000);
+        setInterval(updateCountdown, 1000);
+        setInterval(cuotizhengli, 1000);
+        setInterval(zhengli, 1000);
+    </script>
+    <script src="preload-fonts.js"></script>
+</body>
+</html>

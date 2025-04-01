@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>考试</title>
+        <style>
+            @font-face {
+                font-family: 'cjdmh';
+                src: url('cjdmh.ttf') format('truetype');
+                font-display: swap;
+            }
+
+            @font-face {
+                font-family: 'whgsqzj';
+                src: url('whgsqzj.ttf') format('truetype');
+                font-display: swap;
+            }
+
+            @font-face {
+                font-family: 'Sans';
+                src: url('sans.ttf') format('truetype');
+                font-display: swap;
+            }
+            
+            body {
+                margin: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                overflow: hidden;
+                background: url('back.png') no-repeat center center fixed;
+                background-size: cover;
+                font-family: "微软雅黑";
+                user-select: none; /* 禁止选中文字 */
+            }
+
+            #container {
+                text-align: center;
+            }
+
+            #datetime {
+                font-size: 3.65vw;
+                font-weight: bold;
+                color: rgb(0, 130, 252);
+                margin-bottom: 1.85vh;
+            }
+
+            #examing {
+                font-size: 7.8vw;
+                font-weight: bold;
+                color: red;
+                margin-bottom: 1.85vh;
+            }
+
+            #norubbish {
+                font-size: 2.85vw;
+                font-weight: bold;
+                color: rgb(0, 0, 0);
+                margin-bottom: 8.3vh;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            #norubbish img {
+                width: 5.2vw;
+                height: 9.25vh;
+                margin-bottom: 0.93vh;
+            }
+
+            /* 返回按钮样式 */
+            .back-button {
+                position: fixed;
+                top: 1.85vh;
+                left: 1vw;
+                background: rgba(0, 130, 252, 0.7);
+                color: white;
+                border: none;
+                border-radius: 0.26vw;
+                padding: 0.93vh 1vw;
+                font-size: 0.83vw;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                z-index: 1000;
+            }
+
+            .back-button:hover {
+                background: rgba(0, 130, 252, 1);
+                transform: translateY(-0.19vh);
+                box-shadow: 0 0.37vh 0.74vh rgba(0,0,0,0.2);
+            }
+        </style>
+    </head>
+    <body>
+        <!-- 添加返回按钮 -->
+        <button class="back-button" onclick="window.location.href='../index.html'">返回主页</button>
+        
+        <div id="container">
+            <div id="datetime"></div>
+            <div id="examing">诚信考试&nbsp;&nbsp;&nbsp;规范答题<br>严肃纪律&nbsp;&nbsp;&nbsp;拒绝作弊</div>
+            <div id="norubbish">
+                在你所在的班级考试时,
+                禁止乱扔垃圾！
+                禁止乱涂乱画！
+            </div>
+        </div>
+
+        <script>
+            function updateDateTime() {
+                var now = new Date();
+                var year = now.getFullYear();
+                var month = now.getMonth() + 1;
+                var day = now.getDate();
+                var dayOfWeek = now.toLocaleDateString('zh-cn', { weekday: 'long' });
+                var hours = now.getHours();
+                var minutes = now.getMinutes();
+                var seconds = now.getSeconds();
+                hours = hours < 10 ? '0' + hours : hours;
+                minutes = minutes < 10 ? '0' + minutes : minutes;
+                seconds = seconds < 10 ? '0' + seconds : seconds;
+                var dateString = year + '年' + month + '月' + day + '日 ' + dayOfWeek;
+                var timeString = hours + ':' + minutes + ':' + seconds;
+                document.getElementById('datetime').textContent = dateString + "\n" + timeString;
+            }
+
+            setInterval(updateDateTime, 1000);
+            updateDateTime();
+        </script>
+        <script src="preload-fonts.js"></script>
+    </body>
+</html>

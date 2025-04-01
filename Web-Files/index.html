@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>首页-KLYZ toolkit</title>
+		<script src="./js/link-handler.js"></script>
+		<style>
+			body {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				height: 100vh;
+				margin: 0;
+				padding: 0;
+				text-decoration: none !important; 
+				user-select: none !important;
+				font-family: "HMOSB", Arial, sans-serif;
+				background-color: #1e272e;
+				color: white;
+			}
+			.main-title {
+				font-size: 3rem;
+				margin-bottom: 20px;
+				background: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
+				-webkit-background-clip: text;
+				background-clip: text;
+				color: transparent;
+				text-align: center;
+			}
+			.sub-title {
+				font-size: 1.5rem;
+				margin-bottom: 50px;
+				text-align: center;
+				color: #ccc;
+			}
+			.home-buttons-container {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 30px;
+				width: 100%;
+			}
+			
+			.home-buttons-row {
+				display: flex;
+				justify-content: center;
+				gap: 30px;
+			}
+			
+			.home-button {
+				width: 200px;
+				height: 50px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				background-color: rgba(102, 166, 255, 0.2);
+				border-radius: 8px;
+				color: white;
+				transition: all 0.3s ease;
+				box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+			}
+			
+			.home-button:hover {
+				background-color: rgba(137, 247, 254, 0.3);
+				transform: translateY(-3px);
+				box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+			}
+			
+			.home-link {
+				text-decoration: none;
+				color: white;
+			}
+		</style>
+	</head>
+	<body>
+		<div class='main-title'>KLYZ Toolkit</div>
+		<div class='sub-title'>课堂教学辅助工具</div>
+		<div class="home-buttons-container">
+			<div class="home-buttons-row">
+				<a href="html/Selfstudy.html" class="home-link">
+					<div class='home-button'>自习页面</div>
+				</a>
+				<a href="html/exam.html" class="home-link">
+					<div class='home-button'>诚信考试</div>
+				</a>
+			</div>
+		</div>
+	</body>
+</html>
